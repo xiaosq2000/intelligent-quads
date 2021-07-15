@@ -1,0 +1,105 @@
+\documentclass{tufte-handout}
+\title{暑期实践日志}
+\author{肖书奇\quad 指导教师：熊昊}
+\date{} % This line cancels today's date
+\usepackage{ifxetex}% For compatibility with xelatex engine
+\ifxetex
+\newcommand{\textls}[2][5]{%
+    \begingroup\addfontfeatures{LetterSpace=#1}#2\endgroup
+}
+\renewcommand{\allcapsspacing}[1]{\textls[15]{#1}}
+\renewcommand{\smallcapsspacing}[1]{\textls[10]{#1}}
+\renewcommand{\allcaps}[1]{\textls[15]{\MakeTextUppercase{#1}}}
+\renewcommand{\smallcaps}[1]{\smallcapsspacing{\scshape\MakeTextLowercase{#1}}}
+\renewcommand{\textsc}[1]{\smallcapsspacing{\textsmallcaps{#1}}}
+\usepackage[osf,sc]{mathpazo} % tufte style font
+\usepackage[scaled=0.90]{helvet} % tufte style font
+\usepackage[scaled=0.85]{beramono} % tufte style font
+\fi
+\usepackage{ctex} % 支持中文
+\usepackage{xeCJK}% 支持中文
+\xeCJKsetup{PunctStyle=kaiming}  % 设置中文标点符号，开明式
+% \xeCJKsetup{PunctStyle=quanjiao} % 设置中文标点符号，全角式
+% \setCJKmainfont{仓耳今楷05-6763}      % 设置正文罗马族的 CJK 字体，影响 \rmfamily 和 \textrm 的字体。
+%     \setCJKmainfont{STZhongsong}      % 设置正文罗马族的 CJK 字体，影响 \rmfamily 和 \textrm 的字体。
+%     \setCJKsansfont{STZhongsong}  % 设置正文无衬线族的 CJK 字体，影响 \sffamily 和 \textsf 的字体。
+%     \setCJKmonofont{SimHei}          % 设置正文等宽族的 CJK 字体，影响 \ttfamily 和 \texttt 的字体。
+\usepackage{amsmath} % For AMS math support
+\usepackage{amssymb} % For AMS math support
+\usepackage{amsfonts} % For AMS math support
+\usepackage{booktabs} % For nicely typeset tabular material
+\usepackage{makecell} % For multiple lines in one cell in table environment
+\usepackage{graphicx} % For graphics / images
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Set default scale globally
+\graphicspath{{graphics/}} % Set paths to search for images
+\usepackage{makeidx} % For index
+\makeindex
+\usepackage{romannum} % For Roman numbers
+\usepackage[dvipsnames]{xcolor} % For various colors
+\usepackage{listings}
+\lstset{
+    % basicstyle=\footnotesize\ttfamily,
+        basicstyle=\ttfamily,
+        breaklines=true,
+        columns=fixed,       
+        % numbers=left,                                        % 在左侧显示行号
+            frame=none,                                          % 不显示背景边框
+            % backgroundcolor=\color[RGB]{250,250,250},            % 设定背景颜色
+            % keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+            % numberstyle=\footnotesize\color{darkgray},           % 设定行号格式
+            % commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+            % stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+            showstringspaces=false,                              % 不显示字符串中的空格
+            % language=[11]c++,                                        % 设置语言
+            % morekeywords={alignas,continute,friend,register,true,alignof,decltype,goto,
+                % reinterpret_cast,try,asm,defult,if,return,typedef,auto,delete,inline,short,
+                % typeid,bool,do,int,signed,typename,break,double,long,sizeof,union,case,
+                % dynamic_cast,mutable,static,unsigned,catch,else,namespace,static_assert,using,
+                % char,enum,new,static_cast,virtual,char16_t,char32_t,explict,noexcept,struct,
+                % void,export,nullptr,switch,volatile,class,extern,operator,template,wchar_t,
+                % const,false,private,this,while,constexpr,float,protected,thread_local,
+                % const_cast,for,public,throw,std},
+        morekeywords={syms,simplify,subs,double},
+        emphstyle=\color{CPPViolet}, 
+}
+\hypersetup{colorlinks} % For colored hyperlinks             
+
+\begin{document}
+\maketitle
+\section{配置环境}\marginnote[-0.5cm]{7月1日至2日完成}
+% \par 配置虚拟专用网络。系统设置—网络代理更改为“手动”后，执行
+% \begin{lstlisting}
+%     cd /home/firefly/clash
+%     ./clash -d . 
+% \end{lstlisting}
+% 可开启网络代理。已为git设置网络代理（仅在使用网络代理时，\lstinline{git clone}等命令方可生效。）。若想\textcolor{red}{取消}，命令如下：
+% \begin{lstlisting}
+%     git config --global --unset http.proxy
+%     git config --global --unset https.proxy
+% \end{lstlisting}
+\par 参考 \href{https://github.com/Intelligent-Quads/iq_tutorials}{Intelligent-Quads} 项目，配置开发环境。
+\sidenote{Ubuntu 18.04, ROS Melodic, Gazebo 9, Ardupilot, MAVProxy, MAVROS}
+\section{初步了解}\marginnote[-0.5cm]{7月2日至7月10日完成}
+\par 认识无人机系统的整体架构与开发方式，掌握相关的基础概念。\sidenote{比如
+    \begin{itemize}
+        \item GCS(Ground Control Station)是什么
+        \item FCU(Flight Control Unit)是什么
+        \item MAV(Micro Air Vehicle)Link与MAVROS, MAVProxy有什么关系
+        \item SITL和HITL的对比(Simulation/Hardware In the Loop)
+    \end{itemize}    
+}
+\par 参考 \href{https://www.youtube.com/channel/UCuZy0c-uvSJglnZfQC0-uaQ}{Drone Software Development Tutorials} 系列视频，运行例程。
+% \begin{marginfigure}
+%     \centering
+%     \includegraphics{QGroundControl.png}
+%     \caption{QGroundControl}
+% \end{marginfigure}
+% \begin{marginfigure}
+%     \centering
+%     \includegraphics{无人机模型.jpg}
+%     \caption{四旋翼无人机Gazebo模型}
+% \end{marginfigure}
+\section{成果}
+通过MAVROS配置参数，屏蔽了底层FCU的飞控算法，直接用无线电控制四旋翼无人机的每个电机的PWM占空比，为进一步的强化学习算法实践铺垫。\marginnote[-0.5cm]{7月11日至7月14日完成}
+\printindex
+\end{document}
