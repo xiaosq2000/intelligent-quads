@@ -32,8 +32,8 @@
 \usepackage{graphicx} % For graphics / images
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Set default scale globally
 \graphicspath{{graphics/}} % Set paths to search for images
-\usepackage{makeidx} % For index
-\makeindex
+% \usepackage{makeidx} % For index
+% \makeindex
 \usepackage{romannum} % For Roman numbers
 \usepackage[dvipsnames]{xcolor} % For various colors
 \usepackage{listings}
@@ -89,17 +89,19 @@
     \end{itemize}    
 }
 \par 参考 \href{https://www.youtube.com/channel/UCuZy0c-uvSJglnZfQC0-uaQ}{Drone Software Development Tutorials} 系列视频，运行例程。
-% \begin{marginfigure}
-%     \centering
-%     \includegraphics{QGroundControl.png}
-%     \caption{QGroundControl}
-% \end{marginfigure}
-% \begin{marginfigure}
-%     \centering
-%     \includegraphics{无人机模型.jpg}
-%     \caption{四旋翼无人机Gazebo模型}
-% \end{marginfigure}
 \section{成果}
-通过MAVROS配置参数，屏蔽了底层FCU的飞控算法，直接用无线电控制四旋翼无人机的每个电机的PWM占空比，为进一步的强化学习算法实践铺垫。\marginnote[-0.5cm]{7月11日至7月14日完成}
-\printindex
+\par 可通过MAVROS配置参数，屏蔽底层FCU的飞控算法，直接用无线电控制四旋翼无人机的每个电机的PWM占空比，为进一步的强化学习算法实践铺垫。\marginnote[-0.5cm]{7月11日至7月15日完成}
+\sidenote{已将配置参数的过程写为\lstinline{.sh}脚本，运行后立刻生效。}
+\newpage
+\section{注意事项}
+\subsection{关于MAVROS}
+\begin{itemize}
+    \item MAVROS的\;\lstinline{mav.parm}\;的数据格式与MAVProxy不同，前者使用逗号分隔，后者使用空格分隔。
+    \item 无法同时调用\;\lstinline{rosrun mavros mavparam set TARGET VALUE}\;指令设置多个参数，建议延时后依次执行。
+\end{itemize}
+\subsection{关于QGroundControl}
+\begin{itemize}
+    \item 若运行多个无人机实例，需在Common Link中配置与MAVProxy共享的TCP连接。
+\end{itemize}
+% \printindex
 \end{document}
